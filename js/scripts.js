@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-/*testttt*/
     const navToggle = document.getElementById('customNavToggle');
     const navMenu = document.getElementById('customNavMenu');
 
