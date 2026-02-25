@@ -56,4 +56,30 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Vanilla JS lightbox
+    const overlay = document.getElementById("lightbox-overlay");
+    const overlayImg = document.getElementById("lightbox-img");
+    const overlayCaption = document.getElementById("lightbox-caption");
+
+    document.querySelectorAll(".lightbox").forEach(img => {
+    img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlayCaption.textContent = img.dataset.caption || "";
+        overlay.classList.add("show");
+    });
+    });
+
+    overlay.addEventListener("click", () => {
+    overlay.classList.remove("show");
+    setTimeout(() => {
+        overlayImg.src = "";
+    }, 250);
+    });
+
+    document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        overlay.classList.remove("show");
+    }
+    });
 });
