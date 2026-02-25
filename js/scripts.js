@@ -66,20 +66,29 @@ window.addEventListener('DOMContentLoaded', () => {
     img.addEventListener("click", () => {
         overlayImg.src = img.src;
         overlayCaption.textContent = img.dataset.caption || "";
-        overlay.classList.add("show");
+
+        // zobrazíme overlay hned
+        overlay.style.display = "flex";
+        requestAnimationFrame(() => overlay.classList.add("show"));
+
+        // počkáme, až se obrázek načte
+        overlayImg.onload = () => {
+        overlayCaption.style.width = overlayImg.getBoundingClientRect().width + "px";
+        };
     });
     });
 
+    // zavření overlay kliknutím kamkoliv
     overlay.addEventListener("click", () => {
     overlay.classList.remove("show");
-    setTimeout(() => {
-        overlayImg.src = "";
-    }, 250);
+    setTimeout(() => overlay.style.display = "none", 250);
     });
 
+    // zavření ESC
     document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
         overlay.classList.remove("show");
+        setTimeout(() => overlay.style.display = "none", 250);
     }
     });
 });

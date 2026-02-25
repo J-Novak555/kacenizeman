@@ -1215,6 +1215,7 @@ header.masthead .masthead-heading {
   object-position: center 40%;
 }
 
+/* Lightbox polaroid container */
 .lightbox-polaroid {
   background: #fff;
   border-radius: 10px;
@@ -1224,7 +1225,8 @@ header.masthead .masthead-heading {
   display: flex;
   flex-direction: column;
   box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-  animation: zoomIn 0.25s ease;
+  animation: lightboxZoom 0.28s cubic-bezier(.4,0,.2,1);
+  align-items: center;  /* Důležité, aby caption sedl přesně na obrázek */
 }
 
 #lightbox-overlay {
@@ -1246,20 +1248,19 @@ header.masthead .masthead-heading {
   pointer-events: auto;
 }
 
+/* Obrázek */
 #lightbox-img {
-  width: 100%;
+  display: block;
+  max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
-  display: block;
-  transform: scale(0.9);
-  transition: transform 0.25s ease;
 }
 
 #lightbox-overlay.show #lightbox-img {
   transform: scale(1);
 }
 
-
+/* Popisek */
 #lightbox-caption {
   padding: 0.9rem 1.2rem;
   text-align: center;
@@ -1267,6 +1268,9 @@ header.masthead .masthead-heading {
   background: #fff;
   color: #111;
   border-top: 1px solid #ddd;
+  width: 100%;            /* přesně stejná šířka jako obrázek container */
+  box-sizing: border-box;  /* aby padding neprodloužil šířku */
+  word-wrap: break-word;   /* zalamování dlouhých slov */
 }
 
 @keyframes lightboxZoom {
@@ -1278,10 +1282,6 @@ header.masthead .masthead-heading {
     transform: scale(1) translateY(0);
     opacity: 1;
   }
-}
-
-.lightbox-polaroid {
-  animation: lightboxZoom 0.28s cubic-bezier(.4,0,.2,1);
 }
 
 .portfolio-item:hover .portfolio-hover {
