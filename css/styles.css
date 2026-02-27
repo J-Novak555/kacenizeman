@@ -1,27 +1,11 @@
 @charset "UTF-8";
 
 :root {
-  --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: #dc3545;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #ffc800;
-  --bs-green: #198754;
-  --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
-  --bs-white: #fff;
-  --bs-gray: #6c757d;
-  --bs-gray-dark: #343a40;
-  --bs-primary: #ffc800;
-  --bs-secondary: #6c757d;
-  --bs-success: #198754;
-  --bs-info: #0dcaf0;
-  --bs-warning: #ffc800;
-  --bs-danger: #dc3545;
-  --bs-light: #f8f9fa;
-  --bs-dark: #212529;
+  --pozadi: #fff;
+  --text: #212121;
+  --menu: #112e22;
+  --tlacitko: #4CAF50;
+  --tlacitko-hover: #388E3C;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -45,8 +29,8 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: var(--text);
+  background-color: var(--pozadi);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -210,40 +194,13 @@ strong {
   font-weight: bolder;
 }
 
-small,
-.small {
-  font-size: 0.875em;
-}
-
-mark,
-.mark {
-  padding: 0.2em;
-  background-color: #fcf8e3;
-}
-
-sub,
-sup {
-  position: relative;
-  font-size: 0.75em;
-  line-height: 0;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
 a {
-  color: #ffc800;
+  color: var(--tlacitko-hover);
   text-decoration: underline;
 }
 
 a:hover {
-  color: #cca000;
+  color: var(--tlacitko);
 }
 
 img,
@@ -320,10 +277,6 @@ textarea {
 .img-fluid {
   max-width: 100%;
   height: auto;
-}
-.figure-caption {
-  font-size: 0.875em;
-  color: #6c757d;
 }
 
 .container,
@@ -662,7 +615,7 @@ textarea {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: var(--text);
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -686,7 +639,7 @@ textarea.form-control {
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: var(--pozadi);
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -709,10 +662,6 @@ textarea.form-control {
   }
 }
 
-.btn:hover {
-  color: #212529;
-}
-
 .btn-check:focus+.btn,
 .btn:focus {
   outline: 0;
@@ -728,14 +677,14 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #ffc800;
-  border-color: #ffc800;
+  background-color: var(--tlacitko);
+  border-color: var(--tlacitko-hover);
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #d9aa00;
-  border-color: #cca000;
+  background-color: var(--tlacitko-hover);
+  border-color: var(--tlacitko);
 }
 
 .btn-dark {
@@ -843,16 +792,12 @@ fieldset:disabled .btn {
 }
 
 .custom-nav-link {
-    color: #101010;
     text-decoration: none;
-    font-weight: bold;
     cursor: pointer;
-    font-size: x-large;
+    font-size: 1.2rem;
 }
 
-.custom-nav-link:hover {
-    color: #112e22;
-}
+.nav-menu {color: var(--menu)}
 
 .custom-toggle.active .custom-bar:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
@@ -879,7 +824,8 @@ fieldset:disabled .btn {
     }
     .custom-nav-list {
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
+        align-items: center;
     }
     .custom-nav-list li { margin: 0; }
 }
@@ -1636,7 +1582,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   height: 160px;
   object-fit: cover;      /* zachová poměr stran, vyplní rámeček */
   border-radius: 50%;     /* kulatý tvar */
-  border: 3px solid #ffc800; /* volitelný rámeček, můžeš změnit barvu */
+  border: 3px solid var(--tlacitko-hover); /* volitelný rámeček, můžeš změnit barvu */
   box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* volitelný stín */
   transition: transform 0.3s ease; /* hezký efekt při hover */
 }

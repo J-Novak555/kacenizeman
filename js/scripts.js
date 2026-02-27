@@ -91,4 +91,15 @@ window.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => overlay.style.display = "none", 250);
     }
     });
+
+    requestAnimationFrame(() => {
+        const video = document.querySelector("video");
+        if (!video) return;
+
+        const source = video.querySelector("source");
+        if (!source || !source.dataset.src) return;
+
+        source.src = source.dataset.src;
+        video.load();
+    });
 });
