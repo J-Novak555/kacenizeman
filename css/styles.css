@@ -1470,9 +1470,13 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../assets/img/map-image.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-image: url("../assets/img/map-image.webp");
+  background-image: image-set(
+    url("../assets/img/map-image.avif") type("image/avif"),
+    url("../assets/img/map-image.webp") type("image/webp")
+  );
 }
 
 section#contact .section-heading {
