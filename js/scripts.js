@@ -5,9 +5,9 @@ window.addEventListener('DOMContentLoaded', () => {
     // --- Logo scroll-to-top ---
     const logo = document.getElementById("customLogo");
     if (logo) {
-        logo.style.cursor = "pointer"; // ukazatel myši se změní na ruku
+        logo.style.cursor = "pointer";
         logo.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" }); // plynulý scroll nahoru
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
@@ -17,8 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if(navToggle && navMenu){
         navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('show'); // zobrazit/schovat menu
-            navToggle.classList.toggle('active'); // změna vzhledu tlačítka
+            navMenu.classList.toggle('show');
+            navToggle.classList.toggle('active');
         });
     }
 
@@ -27,15 +27,14 @@ window.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = link.getAttribute('data-scroll');
+            const targetId = link.dataset.scroll;
             const target = document.getElementById(targetId);
             if(target){
-                // spočítá pozici cíle s offsetem pro pevné menu
                 const top = target.getBoundingClientRect().top + window.scrollY - offset;
                 window.scrollTo({ top: top, behavior: 'smooth' });
+                history.replaceState(null, null, window.location.pathname); // URL zůstane čistá
             }
 
-            // Zavře menu, pokud je otevřené (pro mobilní verzi)
             if(navMenu.classList.contains('show')){
                 navMenu.classList.remove('show');
                 navToggle.classList.remove('active');
@@ -45,61 +44,72 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // --- Změna třídy navbar při scrollu ---
     const navBar = document.getElementById('customNavbar');
-    const scrollOffset = 50; // kdy se přidá třída 'scrolled'
-
+    const scrollOffset = 50;
     if(navBar){
         window.addEventListener('scroll', () => {
             if(window.scrollY > scrollOffset){
-                navBar.classList.add('scrolled'); // např. změní barvu pozadí
+                navBar.classList.add('scrolled');
             } else {
                 navBar.classList.remove('scrolled');
             }
         });
     }
 
-    // Vanilla JS lightbox
+    // --- Vanilla JS lightbox ---
     const overlay = document.getElementById("lightbox-overlay");
     const overlayImg = document.getElementById("lightbox-img");
     const overlayCaption = document.getElementById("lightbox-caption");
 
     document.querySelectorAll(".lightbox").forEach(img => {
-    img.addEventListener("click", () => {
-        overlayImg.src = img.src;
-        overlayCaption.textContent = img.dataset.caption || "";
+        img.addEventListener("click", () => {
+            overlayImg.src = img.src;
+            overlayCaption.textContent = img.dataset.caption || "";
 
-        // zobrazíme overlay hned
-        overlay.style.display = "flex";
-        requestAnimationFrame(() => overlay.classList.add("show"));
+            overlay.style.display = "flex";
+            requestAnimationFrame(() => overlay.classList.add("show"));
 
-        // počkáme, až se obrázek načte
-        overlayImg.onload = () => {
-        overlayCaption.style.width = overlayImg.getBoundingClientRect().width + "px";
-        };
-    });
+            overlayImg.onload = () => {
+                overlayCaption.style.width = overlayImg.getBoundingClientRect().width + "px";
+            };
+        });
     });
 
-    // zavření overlay kliknutím kamkoliv
     overlay.addEventListener("click", () => {
-    overlay.classList.remove("show");
-    setTimeout(() => overlay.style.display = "none", 250);
-    });
-
-    // zavření ESC
-    document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
         overlay.classList.remove("show");
         setTimeout(() => overlay.style.display = "none", 250);
-    }
     });
 
-    requestAnimationFrame(() => {
-        const video = document.querySelector("video");
-        if (!video) return;
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+            overlay.classList.remove("show");
+            setTimeout(() => overlay.style.display = "none", 250);
+        }
+    });
 
-        const source = video.querySelector("source");
-        if (!source || !source.dataset.src) return;
+    // --- Lazy-load masthead video ---
+    const video = document.querySelector(".masthead-video");
+    if(video){
+        // Odstraníme všechny existující source (pokud jsou)
+        video.querySelectorAll("source").forEach(s => s.remove());
 
-        source.src = source.dataset.src;
+        const srcWebm = video.dataset.srcWebm;
+        const srcMp4 = video.dataset.srcMp4;
+
+        if(srcWebm){
+            const sourceWebm = document.createElement("source");
+            sourceWebm.src = srcWebm;
+            sourceWebm.type = "video/webm";
+            video.appendChild(sourceWebm);
+        }
+        if(srcMp4){
+            const sourceMp4 = document.createElement("source");
+            sourceMp4.src = srcMp4;
+            sourceMp4.type = "video/mp4";
+            video.appendChild(sourceMp4);
+        }
+
+        // Načtení videa až po DOM
         video.load();
-    });
+    }
+
 });

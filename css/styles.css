@@ -4,8 +4,8 @@
   --pozadi: #fff;
   --text: #212121;
   --menu: #112e22;
-  --tlacitko: #4CAF50;
-  --tlacitko-hover: #388E3C;
+  --tlacitko: #2B642D;
+  --tlacitko-hover: #288d2c;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -956,7 +956,7 @@ fieldset:disabled .btn {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #51555C !important;
 }
 
 .bg-light {
@@ -1480,6 +1480,10 @@ section#contact {
 }
 
 section#contact .section-heading {
+  color: #fff;
+}
+
+section#contact .section-subheading {
   color: #fff;
 }
 
