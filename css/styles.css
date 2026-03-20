@@ -956,7 +956,7 @@ fieldset:disabled .btn {
 }
 
 .text-muted {
-  color: #51555C !important;
+  color: #51555C;
 }
 
 .bg-light {
@@ -1483,7 +1483,7 @@ section#contact .section-heading {
   color: #fff;
 }
 
-section#contact .section-subheading {
+section#contact .text-muted {
   color: #fff;
 }
 
